@@ -89,7 +89,9 @@ app.innerHTML = `
         </p>
       </div>
     </section>
-  </main> <footer class="main-footer">
+  </main> 
+  
+  <footer class="main-footer">
     <div class="footer-content reveal">
       <img src="${logoFooter}" alt="UAC Footer" class="footer-logo" width="300" height="80">
       <div class="footer-text">
@@ -176,7 +178,7 @@ async function renderizarEventos() {
 
     card.innerHTML = `
       <div class="evento-img-container">
-        <img src="${imagenUrl}" alt="${evento.titulo}" class="evento-img" loading="lazy">
+        <img src="${imagenUrl}" alt="${evento.titulo}" class="evento-img" loading="lazy" width="600" height="400">
         <div class="evento-fecha-badge">
           <i class="ph-fill ph-calendar"></i> 
           <span class="badge-text">${fechaFormateada}</span>
@@ -227,6 +229,7 @@ async function renderizarEventos() {
 
   initScrollAnimations();
 }
+
 // Inicialización de todos los módulos del ecosistema
 initScrollAnimations();
 renderizarTutores();
