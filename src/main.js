@@ -14,12 +14,14 @@ import logoFooter from './assets/logo-footer.png';
 
 const app = document.querySelector('#app');
 
+// Dentro de /src/main.js
+
 app.innerHTML = `
   <nav class="navbar reveal">
     <div class="logos-container">
-      <img src="${logoUac}" alt="Logo UAC" class="nav-logo uac-logo">
+      <img src="${logoUac}" alt="Logo UAC" class="nav-logo uac-logo" width="120" height="45">
       <div class="separator"></div>
-      <img src="${logoEpmh}" alt="Logo EPMH" class="nav-logo epmh-logo">
+      <img src="${logoEpmh}" alt="Logo EPMH" class="nav-logo epmh-logo" width="45" height="45">
       <span class="nav-title">Tutoría EPMH</span>
     </div>
     <div class="links">
@@ -28,73 +30,68 @@ app.innerHTML = `
     </div>
   </nav>
 
-  <header class="hero">
-    <div class="hero-content reveal">
-      <span class="badge"><i class="ph ph-shield-check" style="vertical-align: middle; margin-right: 5px;"></i> Área de Tutoría y Bienestar</span>
-      <h1>Ecosistema Digital de Tutoría</h1>
-      <p>Un acompañamiento institucional diseñado para mitigar el desgaste, orientar tu trayectoria clínica y respaldar tu éxito académico.</p>
-    </div>
-  </header>
+  <main>
+    <header class="hero">
+      <div class="hero-content reveal">
+        <span class="badge"><i class="ph ph-shield-check" style="vertical-align: middle; margin-right: 5px;"></i> Área de Tutoría y Bienestar</span>
+        <h1>Ecosistema Digital de Tutoría</h1>
+        <p>Un acompañamiento institucional diseñado para mitigar el desgaste, orientar tu trayectoria clínica y respaldar tu éxito académico.</p>
+      </div>
+    </header>
 
-  <section class="info-section">
-    <div class="section-header reveal">
-      <h2>Fundamentos del SITAP</h2>
-      <p>Más que un sistema de apoyo, es una arquitectura formativa paralela a la enseñanza, basada en el Modelo Humanista-Constructivista.</p>
-    </div>
-    <div class="info-grid">
-      <div class="info-card reveal"><i class="ph-fill ph-shield-warning"></i><h3>Prevención del Riesgo</h3><p>Identificación temprana y rescate de estudiantes al borde de la triple desaprobación.</p></div>
-      <div class="info-card reveal"><i class="ph-fill ph-users-three"></i><h3>Desarrollo Integral</h3><p>Fomento de la ética profesional y manejo del estrés clínico.</p></div>
-      <div class="info-card reveal"><i class="ph-fill ph-plant"></i><h3>Gestión Ecoeficiente</h3><p>Digitalización alineada al plan de sostenibilidad ambiental de la EPMH.</p></div>
-    </div>
-  </section>
+    <section class="info-section">
+      <div class="section-header reveal">
+        <h2>Fundamentos del SITAP</h2>
+        <p>Más que un sistema de apoyo, es una arquitectura formativa paralela a la enseñanza, basada en el Modelo Humanista-Constructivista.</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-card reveal"><i class="ph-fill ph-shield-warning"></i><h3>Prevención del Riesgo</h3><p>Identificación temprana y rescate de estudiantes al borde de la triple desaprobación.</p></div>
+        <div class="info-card reveal"><i class="ph-fill ph-users-three"></i><h3>Desarrollo Integral</h3><p>Fomento de la ética profesional y manejo del estrés clínico.</p></div>
+        <div class="info-card reveal"><i class="ph-fill ph-plant"></i><h3>Gestión Ecoeficiente</h3><p>Digitalización alineada al plan de sostenibilidad ambiental de la EPMH.</p></div>
+      </div>
+    </section>
 
-  <div class="banner-container reveal">
-    <img src="${headerBanner}" alt="Banner UAC" class="full-width-banner">
-  </div>
-
-  <section id="flujo" class="flujo-section">
-    <div class="section-header reveal">
-      <h2>Ruta de Atención Institucional</h2>
-      <p>Conoce los pasos y niveles de derivación dentro del Sistema Institucional de Tutoría y Atención Psicopedagógica.</p>
+    <div class="banner-container reveal">
+      <img src="${headerBanner}" alt="Banner UAC" class="full-width-banner" width="1200" height="250">
     </div>
-    <div class="infografia-container reveal">
-      <img src="${flujoAtencion}" alt="Flujo de Atención SITAP" class="infografia-img">
-    </div>
-  </section>
 
-  <section id="eventos" style="background-color: var(--bg-light); padding-top: 5rem; padding-bottom: 5rem;">
+    <section id="flujo" class="flujo-section">
+      <div class="section-header reveal">
+        <h2>Ruta de Atención Institucional</h2>
+        <p>Conoce los pasos y niveles de derivación dentro del Sistema Institucional de Tutoría y Atención Psicopedagógica.</p>
+      </div>
+      <div class="infografia-container reveal">
+        <img src="${flujoAtencion}" alt="Flujo de Atención SITAP" class="infografia-img" width="1000" height="600">
+      </div>
+    </section>
+
+    <section id="eventos" style="background-color: var(--bg-light); padding-top: 5rem; padding-bottom: 5rem;">
       <div class="section-header reveal">
         <h2>Noticias y Capacitaciones</h2>
         <p>Entérate de las próximas charlas, talleres de salud mental y eventos de la EPMH.</p>
       </div>
-      
       <div class="carousel-wrapper reveal">
-        <button class="carousel-btn prev-btn" id="prev-evento"><i class="ph-bold ph-caret-left"></i></button>
-        
-        <div id="eventos-track" class="carousel-track">
-          </div>
-        
-        <button class="carousel-btn next-btn" id="next-evento"><i class="ph-bold ph-caret-right"></i></button>
+        <button class="carousel-btn prev-btn" id="prev-evento" aria-label="Ver evento anterior"><i class="ph-bold ph-caret-left"></i></button>
+        <div id="eventos-track" class="carousel-track"></div>
+        <button class="carousel-btn next-btn" id="next-evento" aria-label="Ver evento siguiente"><i class="ph-bold ph-caret-right"></i></button>
       </div>
     </section>
 
-  <section id="tutores" style="background-color: var(--white); padding-top: 5rem; padding-bottom: 5rem;">
-    <div class="section-header reveal">
-      <h2>Directorio Institucional</h2>
-      <p>Conoce a los docentes encargados del acompañamiento y sus horarios de disponibilidad.</p>
-    </div>
-    
-    <div id="tutores-container" class="tutores-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
-      <p id="loading-text" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-        <i class="ph ph-circle-notch ph-spin" style="font-size: 2.5rem; color: var(--uac-blue); margin-bottom: 1rem; display: inline-block;"></i><br>
-        Sincronizando datos con la base institucional...
-      </p>
-    </div>
-  </section>
-
-  <footer class="main-footer">
+    <section id="tutores" style="background-color: var(--white); padding-top: 5rem; padding-bottom: 5rem;">
+      <div class="section-header reveal">
+        <h2>Directorio Institucional</h2>
+        <p>Conoce a los docentes encargados del acompañamiento y sus horarios de disponibilidad.</p>
+      </div>
+      <div id="tutores-container" class="tutores-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
+        <p id="loading-text" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <i class="ph ph-circle-notch ph-spin" style="font-size: 2.5rem; color: var(--uac-blue); margin-bottom: 1rem; display: inline-block;"></i><br>
+          Sincronizando datos con la base institucional...
+        </p>
+      </div>
+    </section>
+  </main> <footer class="main-footer">
     <div class="footer-content reveal">
-      <img src="${logoFooter}" alt="UAC Footer" class="footer-logo">
+      <img src="${logoFooter}" alt="UAC Footer" class="footer-logo" width="300" height="80">
       <div class="footer-text">
         <p><strong>Escuela Profesional de Medicina Humana</strong></p>
         <p>Universidad Andina del Cusco - Sabiduría que vive en ti.</p>
