@@ -57,7 +57,7 @@ export function initChatbot() {
   const chatbotContainer = document.createElement('div');
   chatbotContainer.id = 'sitap-chatbot';
   chatbotContainer.innerHTML = `
-    <button id="chatbot-toggle-btn" class="chatbot-fab">
+    <button id="chatbot-toggle-btn" class="chatbot-fab" aria-label="Abrir asistente virtual">
       <i class="ph-fill ph-chat-teardrop-text"></i>
     </button>
 
@@ -70,19 +70,15 @@ export function initChatbot() {
             <span>En línea</span>
           </div>
         </div>
-        <button id="chat-close-btn"><i class="ph ph-x"></i></button>
+        <button id="chat-close-btn" aria-label="Cerrar asistente"><i class="ph ph-x"></i></button>
       </div>
       
       <div id="chat-messages" class="chat-messages">
-        <div class="message bot-message">
-          <p>Hola, soy el asistente virtual de la EPMH. ¿En qué te puedo orientar hoy?</p>
         </div>
-        ${renderOptions(defaultOptions)}
-      </div>
 
       <div class="chat-input-area">
         <input type="text" id="chat-input" placeholder="Escribe tu consulta aquí..." autocomplete="off">
-        <button id="chat-send-btn"><i class="ph-fill ph-paper-plane-right"></i></button>
+        <button id="chat-send-btn" aria-label="Enviar mensaje"><i class="ph-fill ph-paper-plane-right"></i></button>
       </div>
     </div>
   `;
