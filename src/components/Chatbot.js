@@ -74,7 +74,11 @@ export function initChatbot() {
       </div>
       
       <div id="chat-messages" class="chat-messages">
+        <div class="message bot-message">
+          <p>Hola, soy el asistente virtual de la EPMH. ¿En qué te puedo orientar hoy?</p>
         </div>
+        ${renderOptions(defaultOptions)}
+      </div>
 
       <div class="chat-input-area">
         <input type="text" id="chat-input" placeholder="Escribe tu consulta aquí..." autocomplete="off">
