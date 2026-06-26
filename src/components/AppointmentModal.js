@@ -36,7 +36,7 @@ export function createAppointmentModal(tutor, onFormSubmit) {
           </div>
           <div class="form-group">
             <label for="student-code">Código Universitario UAC</label>
-            <input type="text" id="student-code" required placeholder="Ej. 021100254">
+            <input type="text" id="student-code" required placeholder="Ej. 021100254a">
           </div>
           <div class="form-group">
             <label for="student-email">Correo Institucional UAC</label>
@@ -67,26 +67,29 @@ export function createAppointmentModal(tutor, onFormSubmit) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Capturamos los valores y usamos .trim() para eliminar espacios accidentales al inicio o final
+    // Capturamos los valores
     const estudianteVal = form.querySelector('#student-name').value.trim();
     const codigoVal = form.querySelector('#student-code').value.trim();
-    const correoVal = form.querySelector('#student-email').value.trim().toLowerCase(); // Convertimos a minúsculas
+    const correoVal = form.querySelector('#student-email').value.trim().toLowerCase(); 
     const motivoVal = form.querySelector('#appointment-reason').value.trim();
 
     // --- 1. VALIDACIÓN DEL DOMINIO INSTITUCIONAL ---
     if (!correoVal.endsWith('@uandina.edu.pe')) {
-      alert('⚠️ Error de Validación:\nPor favor, utiliza un correo institucional válido que termine exactamente en "@uandina.edu.pe".\nRevisa que no haya errores tipográficos.');
-      return; // Detiene la ejecución para no enviar datos erróneos
+      alert('⚠️ Error de Validación:\nPor favor, utiliza un correo institucional válido que termine exactamente en "@uandina.edu.pe".');
+      return; 
     }
 
-    // --- 2. VALIDACIÓN DEL CÓDIGO (Solo números) ---
-    // Usamos una expresión regular para asegurar que solo contenga dígitos
-    if (!/^\d+$/.test(codigoVal)) {
-      alert('⚠️ Error de Validación:\nEl código universitario solo debe contener números, sin letras ni espacios.');
-      return; // Detiene la ejecución
+    // --- 2. VALIDACIÓN DEL CÓDIGO (Números + 1 letra) ---
+    // Acepta dígitos seguidos de una letra. Usamos a-zA-Z para evitar que el usuario se tranque si su teclado está en mayúsculas.
+    if (!/^\d+[a-zA-Z]$/.test(codigoVal)) {
+      alert('⚠️ Error de Validación:\nEl código universitario debe contener números y finalizar exactamente con una (1) sola letra.');
+      return; 
     }
+    
+    // Forzamos a que el código se guarde en minúscula, cumpliendo tu requerimiento
+    const codigoFinal = codigoVal.toLowerCase();
 
-    // Si las validaciones pasan, procedemos con el estado de carga visual
+    // Estado de carga visual
     const submitBtn = form.querySelector('.submit-form-btn');
     const text = form.querySelector('.btn-text');
     const spinner = form.querySelector('.btn-spinner');
@@ -97,7 +100,7 @@ export function createAppointmentModal(tutor, onFormSubmit) {
 
     const formData = {
       estudiante: estudianteVal,
-      codigo: codigoVal,
+      codigo: codigoFinal, // Pasamos la variable ya procesada en minúscula
       correoEstudiante: correoVal,
       motivo: motivoVal,
       correoTutor: tutor.correo,
