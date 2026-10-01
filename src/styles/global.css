@@ -724,3 +724,35 @@ section {
 .footer-logo { max-width: 300px; height: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
 .footer-text p { margin: 0.5rem 0; color: #94a3b8; font-size: 0.95rem; }
 .footer-text strong { color: white; font-size: 1.1rem; letter-spacing: 1px; }
+
+/* Botón de Quejas - Flotante */
+.btn-buzon-flotante {
+  position: fixed;
+  bottom: 30px;
+  right: 110px; /* <-- Aumentamos este valor para moverlo a la izquierda */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+  transition: all 0.3s ease;
+  z-index: 990; 
+}
+
+.btn-buzon-flotante:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);
+}
+
+.btn-buzon-flotante i {
+  font-size: 1.4rem;
+}
