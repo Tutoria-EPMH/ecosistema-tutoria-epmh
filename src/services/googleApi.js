@@ -1,5 +1,5 @@
 // Reemplazamos con tu URL exacta
-const API_URL = 'https://script.google.com/macros/s/AKfycbwAGbq7cgWJYEkf19BMfs5iaR7yHvUDjM1qRKzH1xBhEIWJU2n7ypD8tq-3-h9AquF6/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyq_8QmLXfc194ycxKRTnlAJH2kT9eGbqwtf8RtPXaH0yHKrIgHj1sqaQqEL5GLzHC3/exec';
 
 // Constantes para la gestión del caché
 const CACHE_KEY = 'epmh_tutores_data';
@@ -50,21 +50,51 @@ export async function getEventos() {
   return data.eventos || [];
 }
 
-// 4. FUNCIÓN PARA ENVIAR CORREOS DE CITAS
+// 4. FUNCIÓN PARA ENVIAR CORREOS DE CITAS (TUTORÍAS)
 export async function sendAppointmentRequest(formData) {
   try {
-    const response = await fetch(API_URL, {
+    // Si formData es un objeto FormData de HTML, lo convertimos a objeto plano
+    const dataToSend = formData instanceof FormData ? Object.fromEntries(formData) : { ...formData };
+
+    // Le indicamos al Apps Script que esta petición es para una CITA
+    dataToSend.tipo_solicitud = "cita";
+
+    await fetch(API_URL, {
       method: 'POST',
       mode: 'no-cors', 
       headers: {
         'Content-Type': 'text/plain;charset=utf-8' 
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(dataToSend)
     });
     
-    return true;
+    return { success: true };
   } catch (error) {
-    console.error("Error enviando datos del formulario:", error);
-    return false;
+    console.error("Error enviando datos del formulario de cita:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+// 5. NUEVA FUNCIÓN PARA ENVIAR REPORTES DE QUEJAS
+export async function sendQuejaRequest(formData) {
+  try {
+    const dataToSend = formData instanceof FormData ? Object.fromEntries(formData) : { ...formData };
+
+    // Le indicamos al Apps Script que esta petición es para una QUEJA
+    dataToSend.tipo_solicitud = "queja";
+
+    await fetch(API_URL, {
+      method: 'POST',
+      mode: 'no-cors', 
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8' 
+      },
+      body: JSON.stringify(dataToSend)
+    });
+    
+    return { success: true };
+  } catch (error) {
+    console.error("Error enviando el reporte de queja:", error);
+    return { success: false, error: error.message };
   }
 }

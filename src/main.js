@@ -1,9 +1,10 @@
 import './styles/global.css';
-import { getTutores, getEventos, sendAppointmentRequest } from './services/googleApi.js';
+import { getTutores, getEventos, sendAppointmentRequest, sendQuejaRequest } from './services/googleApi.js';
 import { initScrollAnimations } from './utils/animations.js';
 import { createTutorCard } from './components/TutorCard.js';
 import { createAppointmentModal } from './components/AppointmentModal.js';
 import { initChatbot } from './components/Chatbot.js';
+import { createQuejasModal } from './components/QuejasModal.js';
 
 // Importación de Assets para Vite
 import logoUac from './assets/logo-uac.png';
@@ -89,6 +90,9 @@ app.innerHTML = `
         </p>
       </div>
     </section>
+    <button id="btn-abrir-quejas" class="btn-buzon-flotante">
+      <i class="ph-bold ph-envelope-simple-open"></i> Buzón de Quejas
+    </button>
   </main> 
   
   <footer class="main-footer">
@@ -235,3 +239,12 @@ initScrollAnimations();
 renderizarTutores();
 renderizarEventos();
 initChatbot();
+
+document.addEventListener('click', (e) => {
+  if (e.target.id === 'btn-abrir-quejas') {
+    const modalElement = createQuejasModal(async (formData) => {
+      return await sendQuejaRequest(formData);
+    });
+    document.body.appendChild(modalElement);
+  }
+});
